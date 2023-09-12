@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "disable_existing_loggers": false,
+  "formatters": {
+    "basic": {
+      "format": "[%(asctime)s][%(funcName)s:%(levelname)s:%(lineno)s] %(message)s",
+      "datefmt": "%Y-%m-%d %H:%M:%S"
+    }
+  },
+  "handlers": {
+    "file_debug": {
+      "class": "logging.FileHandler",
+      "level": "DEBUG",
+      "formatter": "basic",
+      "filename": "debug.log"
+    },
+    "file_exception": {
+      "class": "logging.FileHandler",
+      "level": "ERROR",
+      "formatter": "basic",
+      "filename": "exception.log"
+    }
+  },
+  "loggers": {
+    "root": {
+      "level": "DEBUG",
+      "handlers": ["file_debug", "file_exception"],
+      "propagate": true
+    }
+  }
+}
