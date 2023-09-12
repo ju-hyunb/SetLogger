@@ -10,7 +10,7 @@ Avoid indiscriminate use of print() statements and record logs enable efficient 
 
 --------
 
-When executing a file that you want to leave a log, you can use it anywhere by passing the location of the log setting file to a factor
+When executing a file that you want to leave a log, you can use it anywhere by passing the location of the log setting file to a factor.
 By changing the name of the log file for each executable file, the log file may be managed independently for each service.
 
 #### For example
