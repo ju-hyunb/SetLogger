@@ -10,7 +10,9 @@ logpath = sys.argv[1]
 sys.path.append(logpath)
 
 import SetLogger as logger
-logger.get_logger(script)
+logger.get_logger(script, ["debug", "info", "exception"])
+
+
 
 
 
@@ -20,11 +22,11 @@ if __name__ == '__main__':
     logger.Log("Start Process").debug()
 
     for i in range(5):
-        logger.Log(f"value is {i}").debug()
+        logger.Log(f"value is {i}").info()
 
         try:
             result = 5/i
-            logger.Log(f"Result is {result}").debug()
+            logger.Log(f"Result is {result}").info()
         except Exception as e:
             logger.Log(e).exception()
             

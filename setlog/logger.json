@@ -14,6 +14,24 @@
       "formatter": "basic",
       "filename": "debug.log"
     },
+    "file_info": {
+      "class": "logging.FileHandler",
+      "level": "INFO",
+      "formatter": "basic",
+      "filename": "info.log"
+    },
+    "file_warn": {
+      "class": "logging.FileHandler",
+      "level": "WARN",
+      "formatter": "basic",
+      "filename": "warn.log"
+    },
+    "file_error": {
+      "class": "logging.FileHandler",
+      "level": "ERROR",
+      "formatter": "basic",
+      "filename": "debug.log"
+    },
     "file_exception": {
       "class": "logging.FileHandler",
       "level": "ERROR",
@@ -24,7 +42,7 @@
   "loggers": {
     "root": {
       "level": "DEBUG",
-      "handlers": ["file_debug", "file_exception"],
+      "handlers": ["file_debug", "file_info", "file_warn", "file_error", "file_exception"],
       "propagate": true
     }
   }
