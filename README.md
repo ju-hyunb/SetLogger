@@ -23,3 +23,33 @@ python3 example.py "/home/user/setlog/"
 example.py.debug.log
 example.py.exception.log
 ```
+
+
+-------------
+
+
+++ Upated (23.09.12)
+
+Log Level __[debug, info, warn, error, exception]__
+
+I added the ability to specify the log level I want to use
+
+
+```python
+import SetLogger as logger
+logger.get_logger(script, ["debug", "info", "exception"])
+```
+
+
+```python
+config['loggers']['root']['handlers'] = []
+for level in levels:
+    config['handlers'][f'file_{level}']['filename'] = script_name + '.' + config['handlers'][f'file_{level}']['filename']
+    config['loggers']['root']['handlers'].append(f'file_{level}')
+
+loglevel = ["debug", "info", "warn", "error", "exception"]
+for level in loglevel:
+    if level not in levels:
+        del config["handlers"][f"file_{level}"]
+
+```
