@@ -28,8 +28,6 @@ example.py.exception.log
 -------------
 
 
-++ Upated (23.09.12)
-
 Log Level __[debug, info, warn, error, exception]__
 
 I added the ability to specify the log level I want to use
@@ -53,3 +51,34 @@ for level in loglevel:
         del config["handlers"][f"file_{level}"]
 
 ```
+
+
+-----------
+
+If you want receive notification about serious log, you can use `AlertSalck.py`.
+- Requirements
+  1. Slack API(App)
+  2. Slakc API Token and Channel
+  3. `pip install slackclient`
+
+
+
+
+__Create a SlackHandler__
+
+```python
+class SlackHandler(logging.Handler):
+    def emit(self, record):
+        message = self.format(record)
+        try:
+            response = slack_client.chat_postMessage(channel=SLACK_CHANNEL, text=message)
+            if not response["ok"]:
+                print(f"Failed to send message to Slack: {response['error']}")
+        except SlackApiError as e:
+            print(f"Error sending message to Slack: {e.response['error']}")
+```
+
+
+__Result__
+
+![image](https://github.com/ju-hyunb/SetLogger/assets/104177526/b6af34e3-030f-4e53-8a84-7578e8af77c9)
