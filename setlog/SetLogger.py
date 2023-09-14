@@ -1,6 +1,4 @@
-#!/home/jhbyun/.pyenv/shims/python3.9
 #-*- coding:utf-8 -*-
-
 
 import os
 import logging
@@ -8,24 +6,27 @@ import logging.config
 import json
 
 
-def get_logger(script_name, levels):
-    config_path = os.path.join(os.path.dirname(__file__), 'logger.json')
-    config = json.load(open(config_path))
+PATH = os.path.join(os.path.dirname(__file__), 'logger.json')
+CONFIG = json.load(open(PATH))
 
-    config['loggers']['root']['handlers'] = []
+def get_logger(script_name, levels):
+    
+
+    CONFIG['loggers']['root']['handlers'] = []
     for level in levels:
-        config['handlers'][f'file_{level}']['filename'] = script_name + '.' + config['handlers'][f'file_{level}']['filename']
-        config['loggers']['root']['handlers'].append(f'file_{level}')
+        CONFIG['handlers'][f'file_{level}']['filename'] = script_name + '.' + CONFIG['handlers'][f'file_{level}']['filename']
+        CONFIG['loggers']['root']['handlers'].append(f'file_{level}')
 
 
     loglevel = ["debug", "info", "warn", "error", "exception"]
     for level in loglevel:
         if level not in levels:
-            del config["handlers"][f"file_{level}"]
+            del CONFIG["handlers"][f"file_{level}"]
 
- 
-    logging.config.dictConfig(config)
+
+    logging.config.dictConfig(CONFIG)
     return logging.getLogger(__name__)
+
 
 
 
@@ -43,3 +44,9 @@ class Log:
         logging.error(self.msg)
     def exception(self):
         logging.exception(self.msg, exc_info=self.msg)
+
+
+    
+
+
+
